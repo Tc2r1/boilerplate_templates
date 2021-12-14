@@ -1,9 +1,19 @@
-name: PR Lint
-on: [pull_request]
+# Pull Request Lint
+name: Pull_Review_Title_Linter
+
+on:
+  pull_request:
+    types: ['opened', 'edited', 'reopened', 'synchronize']
 jobs:
-  pr_lint:
+  pr-lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: vijaykramesh/pr-lint-action@v1.1
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - uses: seferov/pr-lint-action@master
+      name: Check Jira Ticket In Title
+      with:
+        title-regex: '^\MYD-\d*(\ )'
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        title-regex-flags: 'g' # optional
+        error-message: 'Add Jira ID to your title, IE: For instance, `MYD-13370 Fixed Everything!` or `MYD-2345 dolor sit amet` ' # optional
+        ## auto-close-message: 'Closing this pull request since the title does not match `%pattern%` / `MYD-2345 dolor sit amet`  pattern. Please fix the title and re-open the pull request.'
+

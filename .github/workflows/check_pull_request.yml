@@ -1,8 +1,6 @@
 # Pull Request Lint
 name: Pull_Review_Title_Linter
 
-
-
 on:
   pull_request:
     types: ['opened', 'edited', 'reopened', 'synchronize']
@@ -10,8 +8,8 @@ jobs:
   pr-lint:
     runs-on: ubuntu-latest
     steps:
-    - name: Check Jira Ticket In Title
     - uses: seferov/pr-lint-action@master
+      name: Check Jira Ticket In Title
       with:
         title-regex: '^\PROJECT-\d*(\ )'
         github-token: ${{ secrets.GITHUB_TOKEN }}

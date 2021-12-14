@@ -1,4 +1,4 @@
-projects: ['PROD']
+projects: ['prod']
 check_title: true
 check_branch: true
 check_commits: true
